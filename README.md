@@ -1,7 +1,7 @@
 # Piccolo
 A simple script that looks for piRNA clusters based on small RNA library coverage. It uses a simple heuristic for cluster identification and classification for uni- and double-stranded clusters. The only input it needs is the bam file resulting from mapping your small RNA reads onto your genome of choice.
 
-<img src=https://github.com/foriin/Piccolo/blob/dev/resources/workflow.png width="600">
+<img src=https://github.com/foriin/Piccolo/blob/dev/resources/workfl.png width="600">
 
 ## Prerequisites
 Bedtools
