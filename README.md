@@ -23,3 +23,20 @@ Usage: find_clusters.sh -i <input_bam_file> [-m <cluster_min_length>] [-o <outpu
   -A  Keep all intermediate output files.
   -h  Display this help message.
 ```
+
+## Tips
+
+If you have multiple samples of your libraries, you can go two ways to merge the results: 1) be permissive and annotate overlaps of clusters in multiple replicates possibly expanding their boundaries or 2) be strict and treat only regions that intersect in all of the samples as 'proper' piRNA clusters. An example of going approach #1 using R would be:
+```
+library(GenomicRanges)
+library(rtracklayer)
+# Get a vector with paths to BED files with cluster for your samples
+cldir <- dir("directory/with/Piccolo/clusters", full.names = T)
+# Import BED files
+clbcop <- lapply(cldir, function(x) import.bed(x))
+# Unite and reduce all clusters, only clusters on the same strand would be merged
+clbcop.red <- GenomicRanges::reduce(unlist(GRangesList(clbcop)))
+# Save merged clusters as a BED
+export.bed(clbcop.red, "/path/for/output.bed")
+```
+
